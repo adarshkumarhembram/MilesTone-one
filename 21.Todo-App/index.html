@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        #taskInput {
+            padding: 8px;
+            width: 300px;
+            margin-right: 10px;
+        }
+        #addTaskBtn {
+            padding: 8px 16px;
+        }
+        .taskItem {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .taskItem.completed {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+        .deleteBtn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .deleteBtn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <h2>TODO App</h2>
+    <div>
+        <input type="text" id="taskInput" placeholder="Enter task...">
+        <button id="addTaskBtn">Add Task</button>
+    </div>
+    <ul id="taskList">
+        <!-- Tasks will be dynamically added here -->
+    </ul>
+
+    <script>
+        const taskInput = document.getElementById('taskInput');
+        const addTaskBtn = document.getElementById('addTaskBtn');
+        const taskList = document.getElementById('taskList');
+
+        // Add task function
+        function addTask(taskContent) {
+            const taskItem = document.createElement('li');
+            taskItem.classList.add('taskItem');
+            taskItem.innerHTML = `
+                <span class="taskContent">${taskContent}</span>
+                <button class="deleteBtn">Delete</button>
+            `;
+            taskList.appendChild(taskItem);
+
+            // Clear input field
+            taskInput.value = '';
+
+            // Delete task functionality
+            const deleteBtn = taskItem.querySelector('.deleteBtn');
+            deleteBtn.addEventListener('click', function() {
+                taskItem.remove();
+            });
+
+            // Mark task as completed functionality
+            taskItem.addEventListener('click', function() {
+                taskItem.classList.toggle('completed');
+            });
+        }
+
+        // Event listener for adding task
+        addTaskBtn.addEventListener('click', function() {
+            const taskContent = taskInput.value.trim();
+            if (taskContent !== '') {
+                addTask(taskContent);
+            } else {
+                alert('Please enter a task.');
+            }
+        });
+
+        // Handle Enter key press to add task
+        taskInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                const taskContent = taskInput.value.trim();
+                if (taskContent !== '') {
+                    addTask(taskContent);
+                } else {
+                    alert('Please enter a task.');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

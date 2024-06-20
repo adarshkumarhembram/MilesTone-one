@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        p {
+            margin-top: 10px;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h2>Login Form</h2>
+    <form id="loginForm">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <p id="message"></p>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const messageParagraph = document.getElementById('message');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            // Validate email
+            const isValidEmail = email.includes('@');
+
+            // Validate password
+            const isValidPassword = password.length >= 8;
+
+            if (isValidEmail && isValidPassword) {
+                showMessage('Valid email and password!', 'success');
+            } else {
+                showMessage('Invalid email or password!', 'error');
+            }
+        });
+
+        function showMessage(message, className) {
+            messageParagraph.textContent = message;
+            messageParagraph.className = className;
+        }
+    </script>
+</body>
+</html>

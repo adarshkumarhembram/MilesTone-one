@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Move Image with Arrow Keys</title>
+<style>
+  #image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: top 0.2s, left 0.2s;
+  }
+</style>
+</head>
+<body>
+<img id="image" src="image.png" alt="Moving Image">
+
+<script>
+  const image = document.getElementById('image');
+  let posX = 0;
+  let posY = 0;
+  const step = 10; // Adjust as needed
+
+  window.addEventListener('keydown', function(event) {
+    switch (event.key) {
+      case 'ArrowUp':
+        posY -= step;
+        break;
+      case 'ArrowDown':
+        posY += step;
+        break;
+      case 'ArrowLeft':
+        posX -= step;
+        break;
+      case 'ArrowRight':
+        posX += step;
+        break;
+      default:
+        return; // Exit function if the key doesn't match
+    }
+    image.style.top = posY + 'px';
+    image.style.left = posX + 'px';
+  });
+</script>
+</body>
+</html>

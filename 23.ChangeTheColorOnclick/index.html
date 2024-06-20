@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Change Color on Click</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<button id="color-btn">Change Color</button>
+
+<script>
+  const colors = ['#FF5733', '#33FF57', '#5733FF', '#FF57B7', '#57B7FF'];
+
+  document.getElementById('color-btn').addEventListener('click', function() {
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    document.body.style.backgroundColor = randomColor;
+  });
+</script>
+</body>
+</html>

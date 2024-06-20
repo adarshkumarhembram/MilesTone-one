@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamically Adding List Items</title>
+</head>
+<body>
+    <h2>What you'll learn</h2>
+    <ol id="learnList">
+        <!-- Existing list items will be dynamically added here -->
+    </ol>
+    <button id="addItemBtn">Add Item</button>
+    <p id="message"></p>
+
+    <script>
+        const learnList = document.getElementById('learnList');
+        const addItemBtn = document.getElementById('addItemBtn');
+        const messageParagraph = document.getElementById('message');
+
+        // Pre-existing array of list items
+        const itemsArray = [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "React",
+            "Node.js"
+        ];
+
+        let currentIndex = 0;
+
+        addItemBtn.addEventListener('click', function() {
+            if (currentIndex < itemsArray.length) {
+                const newItem = document.createElement('li');
+                newItem.textContent = itemsArray[currentIndex];
+                learnList.appendChild(newItem);
+                currentIndex++;
+
+                if (currentIndex === itemsArray.length) {
+                    messageParagraph.textContent = "All items have been added.";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
